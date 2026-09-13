@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Jonathan Souza — Cardiologista e Ecocardiografista</title>
+<meta name="description" content="Dr. Jonathan Souza, cardiologista e ecocardiografista, PhD pela USP. Consultas, ecocardiograma, MAPA, MRPA e mais em São Paulo.">
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#16233A;
+    --navy-soft:#34506B;
+    --paper:#F4F3EF;
+    --paper-2:#EAE7DF;
+    --line:#D9D4C8;
+    --wine:#7A3530;
+    --wine-dark:#5E2A26;
+    --ink:#1C1F24;
+    --ink-soft:#55606B;
+    --serif:'Newsreader', serif;
+    --sans:'Work Sans', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  h1,h2,h3{font-family:var(--serif); font-weight:500; margin:0; color:var(--navy);}
+  h2{font-size:clamp(1.7rem, 3vw, 2.4rem); line-height:1.2;}
+  p{margin:0 0 1em;}
+  .eyebrow{
+    font-family:var(--sans); font-size:0.95rem; color:var(--wine); font-weight:600; margin-bottom:.6em;
+  }
+
+  /* ---------- Nav ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(244,243,239,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1180px; margin:0 auto; padding:14px 32px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .brand{display:flex; align-items:center; gap:10px; text-decoration:none;}
+  .brand img{height:34px; width:auto;}
+  .brand span{font-family:var(--serif); font-size:1.15rem; color:var(--navy);}
+  .nav-cta{
+    display:flex; align-items:center; gap:20px; font-size:.95rem;
+  }
+  .nav-phone{display:none; color:var(--navy-soft); font-weight:500; white-space:nowrap;}
+  @media (min-width:760px){ .nav-phone{display:inline;} }
+  .btn{
+    display:inline-block; padding:11px 22px; border-radius:2px; font-weight:600;
+    font-size:.95rem; text-decoration:none; white-space:nowrap; border:1px solid transparent;
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  @media (max-width:480px){
+    .brand span{font-size:1rem;}
+    .nav-inner{padding:12px 20px; gap:8px;}
+    .nav-cta .btn{padding:9px 14px; font-size:.82rem;}
+  }
+  .btn-primary{background:var(--wine); color:#fff;}
+  .btn-primary:hover{background:var(--wine-dark);}
+  .btn-outline{background:transparent; color:var(--navy); border-color:var(--navy);}
+  .btn-outline:hover{background:var(--navy); color:#fff;}
+  .btn-outline-light{background:transparent; color:#fff; border-color:rgba(255,255,255,.55);}
+  .btn-outline-light:hover{background:#fff; color:var(--navy);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    display:grid; grid-template-columns:1.05fr 0.95fr; align-items:stretch;
+    min-height:calc(100vh - 64px);
+  }
+  @media (max-width:900px){ .hero{grid-template-columns:1fr;} }
+  .hero-text{
+    display:flex; flex-direction:column; justify-content:center;
+    padding:64px 48px 64px clamp(24px,6vw,80px);
+  }
+  @media (max-width:900px){ .hero-text{padding:48px 24px;} }
+  .hero-text h1{
+    font-size:clamp(2.1rem, 4.4vw, 3.4rem); line-height:1.12; max-width:14ch; margin-bottom:.4em;
+  }
+  .hero-text .sub{
+    font-size:1.08rem; color:var(--ink-soft); max-width:46ch; margin-bottom:1.8em;
+  }
+  .hero-actions{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:2.2em;}
+  .hero-stats{
+    display:flex; gap:0; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:22px;
+  }
+  .hero-stats div{
+    padding-right:28px; margin-right:28px; border-right:1px solid var(--line); font-size:.92rem; color:var(--ink-soft); max-width:16ch;
+  }
+  .hero-stats div:last-child{border-right:none;}
+  .hero-stats strong{display:block; font-family:var(--serif); font-size:1.3rem; color:var(--navy); font-weight:500;}
+  .hero-img{position:relative; overflow:hidden; background:var(--navy);}
+  .hero-img img{width:100%; height:100%; object-fit:cover; object-position:top center;}
+
+  /* ---------- Section generic ---------- */
+  section{padding:96px 0;}
+  @media (max-width:760px){ section{padding:64px 0;} }
+  .section-head{max-width:640px; margin-bottom:52px;}
+  .section-head p{color:var(--ink-soft); font-size:1.05rem;}
+
+  /* ---------- About ---------- */
+  .about{background:var(--paper);}
+  .about-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:start;}
+  @media (max-width:860px){ .about-grid{grid-template-columns:1fr; gap:40px;} }
+  .about-media img{width:100%; border-radius:2px;}
+  .credential-list{list-style:none; margin:28px 0 0; padding:0;}
+  .credential-list li{
+    padding:14px 0; border-top:1px solid var(--line); font-size:.95rem; color:var(--ink-soft);
+  }
+  .credential-list li:last-child{border-bottom:1px solid var(--line);}
+  .about-body p{font-size:1.05rem; color:var(--ink);}
+  .about-body p:first-of-type{
+    font-family:var(--serif); font-size:1.3rem; font-style:italic; color:var(--navy); line-height:1.45;
+  }
+
+  /* ---------- Clinic strip ---------- */
+  .clinic{background:var(--paper-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .clinic-grid{display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:4px;}
+  @media (max-width:760px){ .clinic-grid{grid-template-columns:1fr; }}
+  .clinic-grid img{width:100%; height:340px; object-fit:cover;}
+  @media (max-width:760px){ .clinic-grid img{height:220px;} }
+  .clinic-caption{
+    max-width:1180px; margin:0 auto; padding:20px 32px 0; color:var(--ink-soft); font-size:.92rem;
+  }
+
+  /* ---------- Exams ---------- */
+  .exams-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:flex-start;}
+  @media (max-width:900px){ .exams-grid{grid-template-columns:1fr; gap:32px;} }
+  .exams-media{position:sticky; top:96px;}
+  .exams-media img{border-radius:2px;}
+  .exam-row{padding:22px 0; border-top:1px solid var(--line);}
+  .exam-list{border-bottom:1px solid var(--line);}
+  .exam-row h3{font-size:1.15rem; margin-bottom:.35em; font-weight:600;}
+  .exam-row p{margin:0; color:var(--ink-soft); font-size:.97rem;}
+  .exams-cta{
+    margin-top:32px; padding-top:24px; font-size:1rem;
+  }
+  .exams-cta a{color:var(--wine); font-weight:600; text-decoration:none; border-bottom:1px solid var(--wine);}
+
+  /* ---------- Why ---------- */
+  .why{background:var(--navy); color:#EDEEF0;}
+  .why .section-head h2{color:#fff;}
+  .why .section-head p{color:#B8C1CC;}
+  .why-list{display:grid; grid-template-columns:repeat(2,1fr); gap:0 56px;}
+  @media (max-width:760px){ .why-list{grid-template-columns:1fr;} }
+  .why-item{padding:28px 0; border-top:1px solid rgba(255,255,255,.15); display:grid; grid-template-columns:56px 1fr; gap:16px;}
+  .why-item .num{font-family:var(--serif); font-size:1.6rem; color:var(--wine-light,#C98F86); opacity:.85;}
+  .why-item h3{color:#fff; font-size:1.1rem; margin-bottom:.3em; font-weight:600; font-family:var(--sans);}
+  .why-item p{color:#B8C1CC; margin:0; font-size:.95rem;}
+
+  /* ---------- Testimonials (pending) ---------- */
+  .testimonials{background:var(--paper);}
+  .testimonials-empty{
+    border:1px dashed var(--line); border-radius:2px; padding:40px; text-align:center; color:var(--ink-soft);
+    max-width:640px;
+  }
+  .testimonials-empty strong{display:block; color:var(--navy); font-family:var(--serif); font-size:1.2rem; margin-bottom:.4em; font-weight:500;}
+
+  /* ---------- FAQ ---------- */
+  .faq{background:var(--paper-2); border-top:1px solid var(--line);}
+  .faq-list{border-top:1px solid var(--line); max-width:820px;}
+  details{border-bottom:1px solid var(--line);}
+  summary{
+    cursor:pointer; list-style:none; padding:22px 0; font-family:var(--serif); font-size:1.1rem;
+    color:var(--navy); display:flex; justify-content:space-between; align-items:center; gap:16px;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::after{
+    content:'+'; font-family:var(--sans); font-size:1.4rem; color:var(--wine); flex-shrink:0; transition:transform .15s ease;
+  }
+  details[open] summary::after{transform:rotate(45deg);}
+  details p{padding-bottom:22px; margin:0; color:var(--ink-soft); max-width:70ch;}
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{background:var(--wine); color:#fff; text-align:left;}
+  .final-cta .wrap{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:32px;}
+  .final-cta h2{color:#fff; max-width:16ch;}
+  .final-cta p{color:rgba(255,255,255,.85); max-width:40ch;}
+  .final-cta-right{flex-shrink:0;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--navy); color:#B8C1CC; padding:64px 0 32px;}
+  .footer-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,.15);}
+  @media (max-width:760px){ .footer-grid{grid-template-columns:1fr; gap:32px;} }
+  .footer-grid img{height:70px; width:auto; margin-bottom:14px; filter:brightness(0) invert(1);}
+  footer h4{color:#fff; font-family:var(--sans); font-size:.9rem; text-transform:none; margin-bottom:16px; font-weight:600;}
+  footer ul{list-style:none; margin:0; padding:0;}
+  footer li{margin-bottom:10px; font-size:.94rem;}
+  footer a{text-decoration:none; color:#B8C1CC;}
+  footer a:hover{color:#fff;}
+  .footer-bottom{
+    padding-top:28px; font-size:.82rem; color:#8592A0; display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px;
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <img src="icon.png" alt="Dr. Jonathan Souza">
+      <span>Dr. Jonathan Souza</span>
+    </a>
+    <div class="nav-cta">
+      <span class="nav-phone">(11) 98227-1577</span>
+      <a href="tel:+5511982271577" class="btn btn-primary">Agende sua consulta</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="padding:0;">
+    <div class="hero-text">
+      <h1>Pressão arterial sob controle e vida mais longa</h1>
+      <p class="sub">Mais de 15 anos focados na prevenção e diagnóstico. Da consulta ao ecocardiograma, tudo com o mesmo médico — ciência, cuidado e precisão em cada etapa.</p>
+      <div class="hero-actions">
+        <a href="tel:+5511982271577" class="btn btn-primary">Agende sua consulta</a>
+        <a href="#exames" class="btn btn-outline">Conheça os exames disponíveis</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>15+ anos</strong>de experiência em cardiologia</div>
+        <div><strong>PhD</strong>Ciências Médicas — USP</div>
+        <div><strong>Dante Pazzanese</strong>médico assistente</div>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="hero.jpg" alt="Dr. Jonathan Souza, cardiologista">
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="sobre">
+    <div class="wrap about-grid">
+      <div class="about-media">
+        <img src="about.jpg" alt="Dr. Jonathan Souza">
+        <ul class="credential-list">
+          <li>PhD em Ciências Médicas — USP</li>
+          <li>Médico assistente do Instituto Dante Pazzanese de Cardiologia</li>
+          <li>Ecocardiografista pelo Fleury e Rede D'Or</li>
+          <li>Cardiologista e Ecocardiografista titulado pela Sociedade Brasileira de Cardiologia</li>
+          <li>Mais de 15 anos de experiência</li>
+          <li>Pesquisador com publicações em periódicos internacionais</li>
+          <li>Autor do livro "Bizu — Perguntas e Respostas Comentadas em Cardiologia"</li>
+        </ul>
+      </div>
+      <div class="about-body">
+        <div class="eyebrow">Quem vai cuidar de você</div>
+        <p>Sou o Dr. Jonathan Souza — cardiologista, ecocardiografista e doutor em Ciências Médicas pela Universidade de São Paulo (USP).</p>
+        <p>Há mais de 15 anos dedico minha carreira à saúde cardiovascular, com foco em hipertensão arterial, diagnóstico por imagem e prevenção. Minha trajetória foi construída em instituições de referência: formei-me em Medicina pela Universidade Federal de Juiz de Fora, fiz minhas residências em Cardiologia e Ecocardiografia no Instituto Dante Pazzanese de Cardiologia — um dos maiores centros cardiológicos da América Latina.</p>
+        <p>Hoje atuo como médico assistente na Seção de Hipertensão, Nefrologia e Tabagismo do Dante Pazzanese, onde coordeno o Ambulatório de Hipertensão Renovascular e o setor de Monitorização Ambulatorial da Pressão Arterial (MAPA/MRPA). Sou também cofundador do Núcleo de Pesquisa em Hipertensão da instituição.</p>
+        <p>Dediquei-me durante meu doutorado ao estudo da hipertensão com foco nas repercussões que ela pode gerar no coração. Fiz isso utilizando as mais avançadas técnicas de ecocardiografia — unindo o que mais amo fazer (diagnóstico por imagem) com a área clínica em que mais me aprofundei (controle da pressão arterial).</p>
+        <p>Acredito que cuidar é, antes de tudo, ouvir, explicar e acompanhar. Cada paciente que chega ao meu consultório recebe não apenas um diagnóstico, mas um plano claro para proteger o coração e viver mais — com qualidade.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLINIC STRIP -->
+  <section class="clinic" style="padding:0 0 32px;">
+    <div class="clinic-grid">
+      <img src="fachada.jpg" alt="Fachada do consultório">
+      <img src="interno1.jpg" alt="Recepção do consultório">
+      <img src="interno2.jpg" alt="Ambiente interno do consultório">
+    </div>
+    <p class="clinic-caption">Consultório na Av. República do Líbano, 577 — Jardim Paulista, São Paulo.</p>
+  </section>
+
+  <!-- EXAMS -->
+  <section id="exames">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Exames e procedimentos disponíveis</div>
+        <h2>Diagnóstico preciso é o primeiro passo para um tratamento eficaz</h2>
+        <p>Todos os exames abaixo são realizados com equipamentos de alta tecnologia e interpretação médica especializada.</p>
+      </div>
+      <div class="exams-grid">
+        <div class="exams-media">
+          <img src="exames.jpg" alt="Dr. Jonathan Souza realizando ecocardiograma">
+          <div class="exams-cta">
+            <p>Precisa de algum desses exames?<br><a href="tel:+5511982271577">Agende pelo telefone (11) 98227-1577</a></p>
+          </div>
+        </div>
+        <div class="exam-list">
+          <div class="exam-row">
+            <h3>Eletrocardiograma (ECG)</h3>
+            <p>Avaliação rápida da atividade elétrica do coração. Essencial para detectar arritmias e alterações cardíacas.</p>
+          </div>
+          <div class="exam-row">
+            <h3>Ecocardiograma (ECO)</h3>
+            <p>Exame de imagem que mostra a estrutura e a função do coração em tempo real. É minha principal área de atuação e pesquisa.</p>
+          </div>
+          <div class="exam-row">
+            <h3>Doppler de Carótidas (Ecodoppler)</h3>
+            <p>Ajuda na avaliação do risco de doenças cardiovasculares além de analisar o fluxo sanguíneo nas artérias do pescoço, ajudando a identificar risco de AVC.</p>
+          </div>
+          <div class="exam-row">
+            <h3>MAPA — 24 horas</h3>
+            <p>Monitorização Ambulatorial da Pressão Arterial. Registra sua pressão ao longo de um dia inteiro para um diagnóstico mais preciso da hipertensão.</p>
+          </div>
+          <div class="exam-row">
+            <h3>MRPA — 5 dias</h3>
+            <p>Monitorização Residencial da Pressão Arterial. Você mede a pressão em casa por 5 dias, com leitura mais próxima da sua realidade.</p>
+          </div>
+          <div class="exam-row">
+            <h3>Polissonografia Tipo 3</h3>
+            <p>Exame que monitora o sono para identificar apneia obstrutiva — condição frequentemente associada à hipertensão e doenças cardíacas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="why">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow" style="color:#C98F86;">Por que escolher</div>
+        <h2>O que torna esse atendimento diferente</h2>
+      </div>
+      <div class="why-list">
+        <div class="why-item">
+          <div class="num">1</div>
+          <div><h3>Precisão que vem da ciência</h3><p>Doutor pela USP, com pesquisa focada em ecocardiografia e hipertensão. Seu diagnóstico é baseado em evidência científica, não em achismos.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="num">2</div>
+          <div><h3>Olhar para além do número</h3><p>A pressão arterial não é só um número na tela. Avalio o seu coração por completo — estrutura, função, ritmo e vasos — para um plano de cuidado completo.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="num">3</div>
+          <div><h3>Exames no mesmo lugar</h3><p>Consulta e exames diagnósticos com o mesmo médico. Você não precisa correr entre especialistas para juntar as peças.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="num">4</div>
+          <div><h3>Instituições de referência</h3><p>Vínculo com o Instituto Dante Pazzanese, Hospital São Luiz (Rede D'Or) e Fleury — nomes que reforçam a confiança no seu cuidado.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="num">5</div>
+          <div><h3>Acompanhamento de verdade</h3><p>Hipertensão não é um diagnóstico isolado — ela vem acompanhada de outros riscos e exige olhar integral. Por isso, meu compromisso é percorrer cada etapa com você: da prevenção ao tratamento, com presença constante e ciência em cada decisão.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS (pending real content) -->
+  <section class="testimonials">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">O que dizem os pacientes</div>
+        <h2>Depoimentos de quem já passou por aqui</h2>
+      </div>
+      <div class="testimonials-empty">
+        <strong>Em breve</strong>
+        Esta seção está reservada para depoimentos reais de pacientes. Assim que você selecionar avaliações do Google Meu Negócio ou do Instagram, eu adiciono aqui.
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Perguntas frequentes</div>
+        <h2>Dúvidas frequentes</h2>
+      </div>
+      <div class="faq-list">
+        <details open>
+          <summary>Preciso de encaminhamento para marcar consulta?</summary>
+          <p>Não. Você pode agendar diretamente pelo telefone (11) 98227-1577.</p>
+        </details>
+        <details>
+          <summary>O plano de saúde cobre os exames?</summary>
+          <p>A cobertura varia conforme o convênio e o plano. Entre em contato para verificarmos sua autorização.</p>
+        </details>
+        <details>
+          <summary>Hipertensão tem cura?</summary>
+          <p>A hipertensão não tem cura na maior parte dos casos, mas tem controle excelente com o tratamento certo. O objetivo é manter sua pressão sob controle para você viver mais e melhor.</p>
+        </details>
+        <details>
+          <summary>Existem doenças que podem causar a hipertensão ou dificultar seu controle?</summary>
+          <p>Sim, e é por isso que a hipertensão exige visão integral. Problemas de tireoide, doenças das glândulas suprarrenais, alterações nos vasos renais e obesidade podem causar pressão alta ou resistir ao tratamento. Identificar e tratar essas condições é o que diferencia um controle eficaz de um simples "tomar remédio".</p>
+        </details>
+        <details>
+          <summary>O ecocardiograma dói?</summary>
+          <p>Não. É um exame indolor, sem agulhas nem radiação. Usamos ultrassom para ver o coração em tempo real — como uma "filmagem" do seu coração.</p>
+        </details>
+        <details>
+          <summary>Qual é a diferença entre MAPA e MRPA?</summary>
+          <p>O MAPA registra a pressão automaticamente durante 24 horas com um aparelho na cintura. A MRPA é feita por você em casa, durante 5 dias, em horários programados. Ambas servem para um diagnóstico mais real da sua pressão arterial.</p>
+        </details>
+        <details>
+          <summary>Onde fica o consultório?</summary>
+          <p>Av. República do Líbano, 577 — Jardim Paulista, São Paulo - SP, 04501-000.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="wrap">
+      <div>
+        <h2>Cuide do seu coração antes que ele peça socorro</h2>
+        <p>Prevenção é o melhor tratamento. Agende sua consulta e dê o primeiro passo para uma vida mais longa e saudável.</p>
+      </div>
+      <div class="final-cta-right">
+        <a href="tel:+5511982271577" class="btn btn-outline-light">Agendar consulta agora</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <img src="logo.png" alt="Dr. Jonathan Souza — Cardiologista | Ecocardiografista">
+        <p style="max-width:32ch; font-size:.92rem;">Cardiologia e ecocardiografia com base científica, foco em prevenção e acompanhamento contínuo.</p>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li>📞 <a href="tel:+5511982271577">(11) 98227-1577</a></li>
+          <li>📍 Av. República do Líbano, 577 — Jardim Paulista, São Paulo - SP, 04501-000</li>
+          <li>🕐 Segunda a sexta, das 08h até o último cliente. Fechado aos sábados e domingos.</li>
+          <li>📷 <a href="https://instagram.com/jonathan.cardio" target="_blank" rel="noopener">@jonathan.cardio</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Links rápidos</h4>
+        <ul>
+          <li><a href="#sobre">Sobre o Dr. Jonathan Souza</a></li>
+          <li><a href="#exames">Exames e procedimentos</a></li>
+          <li><a href="tel:+5511982271577">Agende sua consulta</a></li>
+          <li><a href="#faq">Perguntas frequentes</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>CRM-SP 141563 | RQE 63278 | RQE 632781 — Cardiologista e Ecocardiografista — PhD em Ciências Médicas, USP / Instituto Dante Pazzanese de Cardiologia</span>
+      <span>© <span id="year"></span> Dr. Jonathan Souza</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
