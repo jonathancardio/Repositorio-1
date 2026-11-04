@@ -409,13 +409,61 @@
     </div>
     <div class="footer-bottom">
       <span>CRM-SP 141563 | RQE 63278 | RQE 632781 — Cardiologista e Ecocardiografista — PhD em Ciências Médicas, USP / Instituto Dante Pazzanese de Cardiologia</span>
-      <span>© <span id="year"></span> Dr. Jonathan Souza</span>
+      <span><a href="/privacidade/">Política de privacidade</a> · <a href="#" onclick="return abrirPreferenciasCookies()">Preferências de cookies</a> · © <span id="year"></span> Dr. Jonathan Souza</span>
     </div>
   </div>
 </footer>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+<!-- Aviso de cookies + Google Analytics (só carrega após consentimento) -->
+<style>
+  .cookie-banner{position:fixed; left:16px; right:16px; bottom:16px; z-index:1000; max-width:720px; margin:0 auto; background:#16233A; color:#fff; border:1px solid rgba(255,255,255,.18); border-radius:4px; padding:18px 20px; box-shadow:0 8px 28px rgba(0,0,0,.25); display:flex; flex-wrap:wrap; gap:14px 20px; align-items:center; justify-content:space-between; font-size:.92rem; line-height:1.5;}
+  .cookie-banner[hidden]{display:none;}
+  .cookie-banner p{margin:0; flex:1 1 320px; color:rgba(255,255,255,.9);}
+  .cookie-banner a{color:#fff; text-decoration:underline;}
+  .cookie-banner .cookie-actions{display:flex; gap:10px; flex-shrink:0;}
+  .cookie-banner button{cursor:pointer; font-family:inherit;}
+</style>
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Aviso de cookies" hidden>
+  <p>Usamos cookies para entender como o site é usado e melhorar o conteúdo. Você pode aceitar ou recusar. Saiba mais na <a href="/privacidade/">Política de Privacidade</a>.</p>
+  <div class="cookie-actions">
+    <button type="button" id="cookie-recusar" class="btn btn-outline-light">Recusar</button>
+    <button type="button" id="cookie-aceitar" class="btn btn-gold">Aceitar</button>
+  </div>
+</div>
+<script>
+(function(){
+  var ID='G-8X2945X74G', KEY='jc-consentimento-cookies', carregado=false;
+  window.dataLayer=window.dataLayer||[];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag=gtag;
+  function ler(){try{return localStorage.getItem(KEY);}catch(e){return null;}}
+  function gravar(v){try{localStorage.setItem(KEY,v);}catch(e){}}
+  function carregar(){
+    if(carregado) return; carregado=true;
+    var s=document.createElement('script'); s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id='+ID;
+    document.head.appendChild(s);
+    gtag('js',new Date()); gtag('config',ID);
+  }
+  var banner=document.getElementById('cookie-banner');
+  function mostrar(){ if(banner) banner.hidden=false; }
+  window.abrirPreferenciasCookies=function(){ mostrar(); return false; };
+  var c=ler();
+  if(c==='aceito') carregar(); else if(c!=='recusado') mostrar();
+  document.getElementById('cookie-aceitar').addEventListener('click',function(){ gravar('aceito'); banner.hidden=true; carregar(); });
+  document.getElementById('cookie-recusar').addEventListener('click',function(){ gravar('recusado'); banner.hidden=true; });
+  document.addEventListener('click',function(e){
+    var a=e.target.closest ? e.target.closest('a[href*="wa.me/"]') : null;
+    if(!a || !carregado) return;
+    var botao=a.href.indexOf('5511981614443')>-1 ? 'agendar' : (a.href.indexOf('5511982271577')>-1 ? 'duvidas' : 'outro');
+    var texto=(a.textContent||'').trim().slice(0,60);
+    gtag('event','clique_whatsapp',{botao:botao, texto_botao:texto, pagina:location.pathname, transport_type:'beacon'});
+    if(botao==='agendar') gtag('event','generate_lead',{metodo:'whatsapp_agendar', pagina:location.pathname, transport_type:'beacon'});
+  });
+})();
 </script>
 </body>
 </html>
