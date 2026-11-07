@@ -358,7 +358,17 @@
 
   <p class="disclaimer">Este conteúdo é informativo e não substitui uma consulta médica. Não altere nem interrompa o seu tratamento sem orientação do seu médico.</p>
 </article>
-<script async src="https://www.instagram.com/embed.js"></script>
+<script>
+  // Carrega o embed do Instagram só quando o vídeo se aproxima da tela (deixa a página mais rápida)
+  (function(){
+    var alvo=document.querySelector('.instagram-media'); if(!alvo) return;
+    function carregar(){ if(window.__igLoaded) return; window.__igLoaded=true;
+      var s=document.createElement('script'); s.async=true; s.src='https://www.instagram.com/embed.js'; document.body.appendChild(s); }
+    if(!('IntersectionObserver' in window)) return carregar();
+    var io=new IntersectionObserver(function(es){ if(es.some(function(e){return e.isIntersecting;})){ io.disconnect(); carregar(); } },{rootMargin:'600px 0px'});
+    io.observe(alvo);
+  })();
+</script>
 </main>
 
 <footer>

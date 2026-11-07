@@ -367,7 +367,17 @@
     <li>Brandão AA, Rodrigues CIS, Bortolotto LA, et al. Diretriz Brasileira de Hipertensão Arterial – 2025. Arq Bras Cardiol. 2025;122(9):e20250624. DOI: 10.36660/abc.20250624</li>
   </ol>
 </article>
-<script async src="https://www.instagram.com/embed.js"></script>
+<script>
+  // Carrega o embed do Instagram só quando o vídeo se aproxima da tela (deixa a página mais rápida)
+  (function(){
+    var alvo=document.querySelector('.instagram-media'); if(!alvo) return;
+    function carregar(){ if(window.__igLoaded) return; window.__igLoaded=true;
+      var s=document.createElement('script'); s.async=true; s.src='https://www.instagram.com/embed.js'; document.body.appendChild(s); }
+    if(!('IntersectionObserver' in window)) return carregar();
+    var io=new IntersectionObserver(function(es){ if(es.some(function(e){return e.isIntersecting;})){ io.disconnect(); carregar(); } },{rootMargin:'600px 0px'});
+    io.observe(alvo);
+  })();
+</script>
 </main>
 
 <footer>
