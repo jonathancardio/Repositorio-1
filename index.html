@@ -35,6 +35,9 @@
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+  /* Contorno visível só para quem navega pelo teclado */
+  a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
   body{
     margin:0;
     background:var(--paper);
@@ -106,7 +109,7 @@
   .hero-photo-wrap{position:absolute; right:0; top:0; bottom:0; z-index:0; display:flex; align-items:flex-end;}
   @media (max-width:700px){ .hero-photo-wrap{position:relative; right:auto; justify-content:center; padding-top:8px;} }
   .hero-bg{height:100%; width:auto; max-width:none; object-fit:contain; object-position:bottom right; display:block;}
-  @media (max-width:700px){ .hero-bg{height:auto; width:78%; max-width:420px;} }
+  @media (max-width:700px){ .hero{padding-top:24px;} .hero-bg{height:auto; width:58%; max-width:300px;} }
   .hero-photo-fade{position:absolute; inset:0; z-index:1; pointer-events:none;
     background:linear-gradient(90deg, var(--navy) 0%, rgba(22,35,58,0) 22%);}
   @media (max-width:700px){ .hero-photo-fade{display:none;} }
@@ -116,7 +119,7 @@
   @media (max-width:700px){ .hero-logo{height:48px; margin-bottom:18px;} }
   .hero-content h1{color:#fff; font-size:clamp(2.1rem, 4.6vw, 3.5rem); line-height:1.14; max-width:16ch; margin-bottom:.4em;}
   .hero-icon{height:92px; width:auto; margin:0 auto 24px; display:block; filter:brightness(0) invert(1); opacity:.95;}
-  @media (max-width:700px){ .hero-icon{height:64px; margin:0 auto 16px;} }
+  @media (max-width:700px){ .hero-icon{height:48px; margin:0 auto 12px;} }
   .hero-text-col{max-width:600px;}
   .hero-content .sub{color:rgba(255,255,255,.82); max-width:46ch; font-size:1.08rem; margin-bottom:1.8em;}
   .hero-actions{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:2.4em;}
@@ -143,6 +146,13 @@
   .about{background:var(--paper);}
   .about-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:start;}
   @media (max-width:860px){ .about-grid{grid-template-columns:1fr; gap:40px;} }
+  /* Celular: foto, depois título e texto, depois credenciais */
+  @media (max-width:860px){
+    .about-media{display:contents;}
+    .about-media > img{order:1;}
+    .about-body{order:2;}
+    .about-grid .credential-list{order:3; margin-top:0;}
+  }
   .about-media img{width:100%;}
   .credential-list{
     list-style:none; margin:28px 0 0; padding:0;
@@ -191,6 +201,9 @@
   @media (max-width:760px){ .why-list{grid-template-columns:1fr;} }
   .why-item{padding:28px 0; border-top:1px solid rgba(255,255,255,.15); display:grid; grid-template-columns:56px 1fr; gap:16px;}
   .why-item .num{font-family:var(--serif); font-size:1.6rem; color:var(--gold); opacity:.9;}
+  /* Itens não são etapas: traço dourado no lugar do número */
+  .why-item .num{font-size:0; line-height:0;}
+  .why-item .num::before{content:''; display:block; width:28px; height:2px; background:var(--gold); margin-top:14px;}
   .why-item h3{color:#fff; font-size:1.1rem; margin-bottom:.3em; font-weight:600; font-family:var(--sans);}
   .why-item p{color:#B8C1CC; margin:0; font-size:.95rem;}
 
@@ -201,14 +214,30 @@
     max-width:640px;
   }
   .testimonials-empty strong{display:block; color:var(--navy); font-family:var(--serif); font-size:1.2rem; margin-bottom:.4em; font-weight:500;}
-  .testimonial-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
-  @media (max-width:900px){ .testimonial-grid{grid-template-columns:repeat(2,1fr);} }
-  @media (max-width:640px){ .testimonial-grid{grid-template-columns:1fr;} }
+  /* Faixa de depoimentos: o visitante desliza para o lado (sem movimento automático) */
+  .testimonial-grid{display:grid; grid-auto-flow:column; grid-auto-columns:calc(100% / 3); gap:0; align-items:stretch;
+    overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scrollbar-width:none; scroll-behavior:smooth;}
+  .testimonial-grid::-webkit-scrollbar{display:none;}
+  .testimonial-grid > .testimonial-card{scroll-snap-align:start; border:1px solid var(--line);}
+  .testimonial-grid > .testimonial-card + .testimonial-card{border-left:0;}
+  @media (max-width:900px){ .testimonial-grid{grid-auto-columns:calc(100% / 2);} }
+  @media (max-width:640px){ .testimonial-grid{grid-auto-columns:86%;} }
+  @media (prefers-reduced-motion: reduce){ .testimonial-grid{scroll-behavior:auto;} }
+  .testimonials-footer{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:20px;}
+  .testimonials-footer .testimonials-source{margin:0;}
+  .testimonials-nav{display:flex; gap:8px; flex-shrink:0;}
+  .testimonials-nav[hidden]{display:none;}
+  .testimonials-nav button{width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center; padding:0; cursor:pointer;
+    background:transparent; color:var(--navy); border:1px solid var(--navy); transition:background .15s ease, color .15s ease;}
+  .testimonials-nav button:hover:not(:disabled){background:var(--navy); color:#fff;}
+  .testimonials-nav button:disabled{opacity:.3; cursor:default;}
+  .testimonials-nav svg{width:18px; height:18px;}
   .testimonial-card{background:var(--paper); padding:26px 24px;}
   .testimonial-stars{color:var(--gold); font-size:.9rem; letter-spacing:2px; margin-bottom:12px;}
   .testimonial-text{font-size:.94rem; color:var(--ink); line-height:1.55; margin-bottom:16px; min-height:0;}
   .testimonial-name{font-family:var(--serif); font-size:.98rem; color:var(--navy); font-weight:500;}
   .testimonials-source{margin-top:28px; font-size:.88rem; color:var(--ink-soft);}
+  .testimonials-source a{color:inherit; text-decoration:underline; text-underline-offset:2px;}
 
   /* ---------- FAQ ---------- */
   .faq{background:var(--paper-2); border-top:1px solid var(--line);}
@@ -238,7 +267,7 @@
   .footer-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,.15);}
   @media (max-width:760px){ .footer-grid{grid-template-columns:1fr; gap:32px;} }
   .footer-grid img{height:110px; width:auto; margin-bottom:14px; filter:brightness(0) invert(1);}
-  footer h4{color:#fff; font-family:var(--sans); font-size:.9rem; text-transform:none; margin-bottom:16px; font-weight:600;}
+  footer h2.footer-title{color:#fff; font-family:var(--sans); font-size:.9rem; text-transform:none; margin:1.33em 0 16px; font-weight:600; line-height:1.55; letter-spacing:normal;}
   footer ul{list-style:none; margin:0; padding:0;}
   footer li{margin-bottom:10px; font-size:.94rem;}
   footer a{text-decoration:none; color:#B8C1CC;}
@@ -378,23 +407,23 @@
       </div>
       <div class="why-list">
         <div class="why-item">
-          <div class="num">1</div>
+          <div class="num" aria-hidden="true">1</div>
           <div><h3>Precisão que vem da ciência</h3><p>Doutor pela USP, com pesquisa focada em ecocardiografia e hipertensão. Seu diagnóstico é baseado em evidência científica, não em achismos.</p></div>
         </div>
         <div class="why-item">
-          <div class="num">2</div>
+          <div class="num" aria-hidden="true">2</div>
           <div><h3>Olhar para além do número</h3><p>A pressão arterial não é só um número na tela. Avalio o seu coração por completo — estrutura, função, ritmo e vasos — para um plano de cuidado completo.</p></div>
         </div>
         <div class="why-item">
-          <div class="num">3</div>
+          <div class="num" aria-hidden="true">3</div>
           <div><h3>Exames no mesmo lugar</h3><p>Consulta e exames diagnósticos com o mesmo médico. Você não precisa correr entre especialistas para juntar as peças.</p></div>
         </div>
         <div class="why-item">
-          <div class="num">4</div>
+          <div class="num" aria-hidden="true">4</div>
           <div><h3>Instituições de referência</h3><p>Vínculo com o Instituto Dante Pazzanese, Hospital São Luiz (Rede D'Or) e Fleury — nomes que reforçam a confiança no seu cuidado.</p></div>
         </div>
         <div class="why-item">
-          <div class="num">5</div>
+          <div class="num" aria-hidden="true">5</div>
           <div><h3>Acompanhamento de verdade</h3><p>Hipertensão não é um diagnóstico isolado — ela vem acompanhada de outros riscos e exige olhar integral. Por isso, meu compromisso é percorrer cada etapa com você: da prevenção ao tratamento, com presença constante e ciência em cada decisão.</p></div>
         </div>
       </div>
@@ -408,99 +437,105 @@
         <div class="eyebrow">O que dizem os pacientes</div>
         <h2>Depoimentos de quem já passou por aqui</h2>
       </div>
-      <div class="testimonial-grid">
+      <div class="testimonial-grid" id="depoimentos" tabindex="0" role="region" aria-label="Depoimentos de pacientes (deslize para ver mais)">
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</div>
           <p class="testimonial-text">"Bem fácil avaliar Dr. Jonathan. Sempre atencioso e com atenção a tudo que se passa comigo. Obrigada."</p>
           <div class="testimonial-name">Luiza de Marilac Freire Araujo</div>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</div>
           <p class="testimonial-text">"Tive uma excelente consulta com o dr Jonathan! Conheci o dr por indicação da minha endócrino e nunca fui tão bem atendida por um cardiologista como fui pelo dr Jonathan. Ele é muito profissional, simpático, atencioso e cuidadoso. Ouviu minhas queixas e preocupações, analisou meus exames com detalhes e explicou tudo que eu precisava saber sobre minha saúde cardíaca. Recomendo sem dúvidas para quem precisa de um acompanhamento cardiológico de altíssima qualidade!"</p>
           <div class="testimonial-name">Isabella Vieira</div>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</div>
           <p class="testimonial-text">"Excelente profissional! O Dr. Jonathan me atendeu com extrema dedicação. Tivemos uma consulta longa, investigando tudo com muito cuidado, o que é um grande diferencial no atendimento por plano de saúde. Virei fã logo de cara e já indiquei para a minha esposa, que também teve uma ótima consulta. Deixo meu feedback sincero: um cardiologista nota 10!"</p>
           <div class="testimonial-name">Alaerte Vidali</div>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</div>
           <p class="testimonial-text">"O Dr. Jonathan foi super minucioso e detalhista. Demonstrou muito conhecimento e cuidado com relação às orientações das medicações e mudança de estilo de vida. Excelente médico, indico demais."</p>
           <div class="testimonial-name">Vanessa Takatu</div>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</div>
           <p class="testimonial-text">"Minha consulta com o Dr. Jonathan foi excelente. Ele é bastante detalhista, atencioso e criterioso."</p>
           <div class="testimonial-name">Sandra Regina Abatepaulo</div>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</div>
           <p class="testimonial-text">"Comecei a fazer acompanhamento do cardio com o Dr. Jonathan para melhorar a performance atlética e super recomendo! Excelente profissional, muito detalhista e cuidadoso!"</p>
           <div class="testimonial-name">Vinicius Fontes</div>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</div>
           <p class="testimonial-text">"Dr. Jonathan atendeu a minha mãe. Gostamos muito da consulta. Médico muito competente, atencioso, humano e paciente. Recomendo."</p>
           <div class="testimonial-name">Stella Martins</div>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</div>
           <p class="testimonial-text">"Recebi uma indicação para passar com o cardiologista Dr. Jonathan e só tenho a agradecer. Excelente profissional, atencioso, cuidadoso, mostra preocupação genuína com seus pacientes. Achei meu cardiologista!"</p>
           <div class="testimonial-name">Monica Schochter Brito</div>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</div>
           <p class="testimonial-text">"Dr. Jonathan é excelente profissional, além de super paciente e atencioso. Indico com certeza!"</p>
           <div class="testimonial-name">Rayssa Teves</div>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</div>
           <p class="testimonial-text">"O Dr. Jonathan é excelente, ótimo profissional, super atencioso e ético!!! Indico para todos!!"</p>
           <div class="testimonial-name">Luana Specchio</div>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</div>
           <p class="testimonial-text">"Atendimento de qualidade e personalizado. Profissional de 1ª linha. Recomendo a consulta."</p>
           <div class="testimonial-name">Sandro Brito</div>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</div>
           <p class="testimonial-text">"O Dr. Jonathan é um médico cardiologista excelente! Prestativo, educado, gentil, acolhedor e muito competente! Se você precisa de uma orientação cardiológica, essa é a melhor opção."</p>
           <div class="testimonial-name">Lin Jine</div>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</div>
           <p class="testimonial-text">"Médico cardiologista prestativo e competente! Parabéns!"</p>
           <div class="testimonial-name">Carlos Watanabe</div>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</div>
           <p class="testimonial-text">"Competente, explica tudo muito bem e com embasamento científico. Mais que recomendo!"</p>
           <div class="testimonial-name">Mateus Antunes Nogueira</div>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</div>
           <p class="testimonial-text">"Dr. Jonathan é um médico extremamente competente e dedicado."</p>
           <div class="testimonial-name">Juliana Capelli</div>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</div>
           <p class="testimonial-text">"Quando buscamos um especialista, vamos preocupados e atentos a cada detalhe! Eu e minha esposa fomos muito bem recepcionados na clínica, em especial ficamos muito satisfeitos com a consulta e exames realizados pelo Dr. Jonathan Batista Souza, um excelente profissional cardiologista! Sentimos muita segurança e ficamos tranquilos após a consulta."</p>
           <div class="testimonial-name">Jefferson Alves Ribeiro</div>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</div>
           <p class="testimonial-text">"Médico atencioso e humano, tive uma ótima experiência, esclareceu todas as minhas dúvidas, indico ele a todos!"</p>
           <div class="testimonial-name">Camilla Gomes</div>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</div>
           <p class="testimonial-text">"Excelente profissional e excelente atendimento."</p>
           <div class="testimonial-name">Ingrid Fernanda de Oliveira Vieira</div>
         </div>
       </div>
-      <p class="testimonials-source">Avaliações reais de pacientes, via Google.</p>
+      <div class="testimonials-footer">
+        <p class="testimonials-source">Avaliações reais de pacientes, <a href="https://share.google/c4LIlE0O0gSRXLQvW" target="_blank" rel="noopener">via Google</a>.</p>
+        <div class="testimonials-nav" hidden>
+          <button type="button" data-dir="-1" aria-controls="depoimentos" aria-label="Depoimentos anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button type="button" data-dir="1" aria-controls="depoimentos" aria-label="Próximos depoimentos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -577,7 +612,7 @@
         <p style="max-width:32ch; font-size:.92rem;">Cardiologia e ecocardiografia com base científica, foco em prevenção e acompanhamento contínuo.</p>
       </div>
       <div>
-        <h4>Contato</h4>
+        <h2 class="footer-title">Contato</h2>
         <ul>
           <li>💬 <a href="https://wa.me/5511981614443?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20do%20Dr.%20Jonathan%2C%20cardiologista.%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">(11) 98161-4443 (WhatsApp)</a></li>
           <li>📞 <a href="tel:+551131680609">(11) 3168-0609</a></li>
@@ -588,7 +623,7 @@
         </ul>
       </div>
       <div>
-        <h4>Links rápidos</h4>
+        <h2 class="footer-title">Links rápidos</h2>
         <ul>
           <li><a href="#sobre">Sobre o Dr. Jonathan Souza</a></li>
           <li><a href="#exames">Exames e procedimentos</a></li>
@@ -607,6 +642,26 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+<script>
+  // Setas da faixa de depoimentos: avançam uma "página" de cartões; o visitante controla tudo
+  (function(){
+    var faixa=document.getElementById('depoimentos'), nav=document.querySelector('.testimonials-nav');
+    if(!faixa||!nav) return;
+    var btns=nav.querySelectorAll('button');
+    function atualiza(){
+      var fim=faixa.scrollWidth-faixa.clientWidth-2;
+      btns[0].disabled=faixa.scrollLeft<=2; btns[1].disabled=faixa.scrollLeft>=fim;
+      nav.hidden=faixa.scrollWidth<=faixa.clientWidth+2;
+    }
+    btns.forEach(function(b){ b.addEventListener('click',function(){
+      var calmo=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      faixa.scrollBy({left:faixa.clientWidth*Number(b.dataset.dir), behavior:calmo?'auto':'smooth'});
+    }); });
+    faixa.addEventListener('scroll',function(){ window.requestAnimationFrame(atualiza); },{passive:true});
+    window.addEventListener('resize',atualiza);
+    atualiza();
+  })();
 </script>
 
 
