@@ -201,6 +201,9 @@
   @media (max-width:760px){ .why-list{grid-template-columns:1fr;} }
   .why-item{padding:28px 0; border-top:1px solid rgba(255,255,255,.15); display:grid; grid-template-columns:56px 1fr; gap:16px;}
   .why-item .num{font-family:var(--serif); font-size:1.6rem; color:var(--gold); opacity:.9;}
+  /* Itens não são etapas: traço dourado no lugar do número */
+  .why-item .num{font-size:0; line-height:0;}
+  .why-item .num::before{content:''; display:block; width:28px; height:2px; background:var(--gold); margin-top:14px;}
   .why-item h3{color:#fff; font-size:1.1rem; margin-bottom:.3em; font-weight:600; font-family:var(--sans);}
   .why-item p{color:#B8C1CC; margin:0; font-size:.95rem;}
 
@@ -389,23 +392,23 @@
       </div>
       <div class="why-list">
         <div class="why-item">
-          <div class="num">1</div>
+          <div class="num" aria-hidden="true">1</div>
           <div><h3>Precisão que vem da ciência</h3><p>Doutor pela USP, com pesquisa focada em ecocardiografia e hipertensão. Seu diagnóstico é baseado em evidência científica, não em achismos.</p></div>
         </div>
         <div class="why-item">
-          <div class="num">2</div>
+          <div class="num" aria-hidden="true">2</div>
           <div><h3>Olhar para além do número</h3><p>A pressão arterial não é só um número na tela. Avalio o seu coração por completo — estrutura, função, ritmo e vasos — para um plano de cuidado completo.</p></div>
         </div>
         <div class="why-item">
-          <div class="num">3</div>
+          <div class="num" aria-hidden="true">3</div>
           <div><h3>Exames no mesmo lugar</h3><p>Consulta e exames diagnósticos com o mesmo médico. Você não precisa correr entre especialistas para juntar as peças.</p></div>
         </div>
         <div class="why-item">
-          <div class="num">4</div>
+          <div class="num" aria-hidden="true">4</div>
           <div><h3>Instituições de referência</h3><p>Vínculo com o Instituto Dante Pazzanese, Hospital São Luiz (Rede D'Or) e Fleury — nomes que reforçam a confiança no seu cuidado.</p></div>
         </div>
         <div class="why-item">
-          <div class="num">5</div>
+          <div class="num" aria-hidden="true">5</div>
           <div><h3>Acompanhamento de verdade</h3><p>Hipertensão não é um diagnóstico isolado — ela vem acompanhada de outros riscos e exige olhar integral. Por isso, meu compromisso é percorrer cada etapa com você: da prevenção ao tratamento, com presença constante e ciência em cada decisão.</p></div>
         </div>
       </div>
