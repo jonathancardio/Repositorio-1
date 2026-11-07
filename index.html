@@ -201,9 +201,9 @@
   @media (max-width:760px){ .why-list{grid-template-columns:1fr;} }
   .why-item{padding:28px 0; border-top:1px solid rgba(255,255,255,.15); display:grid; grid-template-columns:56px 1fr; gap:16px;}
   .why-item .num{font-family:var(--serif); font-size:1.6rem; color:var(--gold); opacity:.9;}
-  /* Itens não são etapas: traço dourado no lugar do número */
+  /* Itens não são etapas: bolinha dourada no lugar do número */
   .why-item .num{font-size:0; line-height:0;}
-  .why-item .num::before{content:''; display:block; width:28px; height:2px; background:var(--gold); margin-top:14px;}
+  .why-item .num::before{content:''; display:block; width:8px; height:8px; border-radius:50%; background:var(--gold); margin-top:10px;}
   .why-item h3{color:#fff; font-size:1.1rem; margin-bottom:.3em; font-weight:600; font-family:var(--sans);}
   .why-item p{color:#B8C1CC; margin:0; font-size:.95rem;}
 
