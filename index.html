@@ -214,9 +214,24 @@
     max-width:640px;
   }
   .testimonials-empty strong{display:block; color:var(--navy); font-family:var(--serif); font-size:1.2rem; margin-bottom:.4em; font-weight:500;}
-  .testimonial-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
-  @media (max-width:900px){ .testimonial-grid{grid-template-columns:repeat(2,1fr);} }
-  @media (max-width:640px){ .testimonial-grid{grid-template-columns:1fr;} }
+  /* Faixa de depoimentos: o visitante desliza para o lado (sem movimento automático) */
+  .testimonial-grid{display:grid; grid-auto-flow:column; grid-auto-columns:calc(100% / 3); gap:0; align-items:stretch;
+    overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scrollbar-width:none; scroll-behavior:smooth;}
+  .testimonial-grid::-webkit-scrollbar{display:none;}
+  .testimonial-grid > .testimonial-card{scroll-snap-align:start; border:1px solid var(--line);}
+  .testimonial-grid > .testimonial-card + .testimonial-card{border-left:0;}
+  @media (max-width:900px){ .testimonial-grid{grid-auto-columns:calc(100% / 2);} }
+  @media (max-width:640px){ .testimonial-grid{grid-auto-columns:86%;} }
+  @media (prefers-reduced-motion: reduce){ .testimonial-grid{scroll-behavior:auto;} }
+  .testimonials-footer{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:20px;}
+  .testimonials-footer .testimonials-source{margin:0;}
+  .testimonials-nav{display:flex; gap:8px; flex-shrink:0;}
+  .testimonials-nav[hidden]{display:none;}
+  .testimonials-nav button{width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center; padding:0; cursor:pointer;
+    background:transparent; color:var(--navy); border:1px solid var(--navy); transition:background .15s ease, color .15s ease;}
+  .testimonials-nav button:hover:not(:disabled){background:var(--navy); color:#fff;}
+  .testimonials-nav button:disabled{opacity:.3; cursor:default;}
+  .testimonials-nav svg{width:18px; height:18px;}
   .testimonial-card{background:var(--paper); padding:26px 24px;}
   .testimonial-stars{color:var(--gold); font-size:.9rem; letter-spacing:2px; margin-bottom:12px;}
   .testimonial-text{font-size:.94rem; color:var(--ink); line-height:1.55; margin-bottom:16px; min-height:0;}
@@ -422,7 +437,7 @@
         <div class="eyebrow">O que dizem os pacientes</div>
         <h2>Depoimentos de quem já passou por aqui</h2>
       </div>
-      <div class="testimonial-grid">
+      <div class="testimonial-grid" id="depoimentos" tabindex="0" role="region" aria-label="Depoimentos de pacientes (deslize para ver mais)">
         <div class="testimonial-card">
           <div class="testimonial-stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">★★★★★</div>
           <p class="testimonial-text">"Bem fácil avaliar Dr. Jonathan. Sempre atencioso e com atenção a tudo que se passa comigo. Obrigada."</p>
@@ -514,7 +529,13 @@
           <div class="testimonial-name">Ingrid Fernanda de Oliveira Vieira</div>
         </div>
       </div>
-      <p class="testimonials-source">Avaliações reais de pacientes, <a href="https://share.google/c4LIlE0O0gSRXLQvW" target="_blank" rel="noopener">via Google</a>.</p>
+      <div class="testimonials-footer">
+        <p class="testimonials-source">Avaliações reais de pacientes, <a href="https://share.google/c4LIlE0O0gSRXLQvW" target="_blank" rel="noopener">via Google</a>.</p>
+        <div class="testimonials-nav" hidden>
+          <button type="button" data-dir="-1" aria-controls="depoimentos" aria-label="Depoimentos anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button type="button" data-dir="1" aria-controls="depoimentos" aria-label="Próximos depoimentos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -621,6 +642,26 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+<script>
+  // Setas da faixa de depoimentos: avançam uma "página" de cartões; o visitante controla tudo
+  (function(){
+    var faixa=document.getElementById('depoimentos'), nav=document.querySelector('.testimonials-nav');
+    if(!faixa||!nav) return;
+    var btns=nav.querySelectorAll('button');
+    function atualiza(){
+      var fim=faixa.scrollWidth-faixa.clientWidth-2;
+      btns[0].disabled=faixa.scrollLeft<=2; btns[1].disabled=faixa.scrollLeft>=fim;
+      nav.hidden=faixa.scrollWidth<=faixa.clientWidth+2;
+    }
+    btns.forEach(function(b){ b.addEventListener('click',function(){
+      var calmo=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      faixa.scrollBy({left:faixa.clientWidth*Number(b.dataset.dir), behavior:calmo?'auto':'smooth'});
+    }); });
+    faixa.addEventListener('scroll',function(){ window.requestAnimationFrame(atualiza); },{passive:true});
+    window.addEventListener('resize',atualiza);
+    atualiza();
+  })();
 </script>
 
 
