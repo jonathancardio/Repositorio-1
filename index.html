@@ -6,7 +6,16 @@
 <meta name="google-site-verification" content="NDnByem-BmHDMIlo9XgQ7y1-BszZLNhGP_3MoQyNv80" />
 <title>Dr. Jonathan Souza — Cardiologista e Ecocardiografista</title>
 <meta name="description" content="Dr. Jonathan Souza, cardiologista e ecocardiografista, PhD pela USP. Consultas, ecocardiograma, MAPA, MRPA e mais em São Paulo.">
+<link rel="canonical" href="https://jonathancardio.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dr. Jonathan Souza — Cardiologista e Ecocardiografista">
+<meta property="og:description" content="Dr. Jonathan Souza, cardiologista e ecocardiografista, PhD pela USP. Consultas, ecocardiograma, MAPA, MRPA e mais em São Paulo.">
+<meta property="og:url" content="https://jonathancardio.com.br/">
+<meta property="og:image" content="https://jonathancardio.com.br/about.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -34,7 +43,7 @@
     line-height:1.55;
     -webkit-font-smoothing:antialiased;
   }
-  img{max-width:100%; display:block;}
+  img{max-width:100%; height:auto; display:block;}
   a{color:inherit;}
   .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
   @media (max-width:640px){ .wrap{padding:0 20px;} }
@@ -203,6 +212,7 @@
 
   /* ---------- FAQ ---------- */
   .faq{background:var(--paper-2); border-top:1px solid var(--line);}
+  .faq .eyebrow{color:#82632B;} /* contraste AA sobre o fundo cinza */
   .faq-list{border-top:1px solid var(--line); max-width:820px;}
   details{border-bottom:1px solid var(--line);}
   summary{
@@ -233,11 +243,19 @@
   footer li{margin-bottom:10px; font-size:.94rem;}
   footer a{text-decoration:none; color:#B8C1CC;}
   footer a:hover{color:#fff;}
+  /* Toque fácil no celular: área mínima de ~44px nos contatos, sem mudar o visual */
+  @media (max-width:760px){
+    .footer-grid > div:nth-child(2) li:has(> a[href^="tel:"]), .footer-grid > div:nth-child(2) li:has(> a[href*="wa.me"]){margin-bottom:0;}
+    .footer-grid > div:nth-child(2) li > a[href^="tel:"], .footer-grid > div:nth-child(2) li > a[href*="wa.me"]{display:inline-block; padding:13px 0;}
+    .exams-cta a{position:relative; display:inline-block;}
+    .exams-cta a::after{content:''; position:absolute; left:0; right:0; top:-12px; bottom:-12px;}
+  }
   .footer-bottom{
     padding-top:28px; font-size:.82rem; color:#8592A0; display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px;
   }
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Physician", "name": "Dr. Jonathan Souza", "alternateName": "Dr. Jonathan Batista Souza", "url": "https://jonathancardio.com.br/", "image": "https://jonathancardio.com.br/about.jpg", "medicalSpecialty": "Cardiovascular", "telephone": "+55-11-98161-4443", "address": {"@type": "PostalAddress", "streetAddress": "Av. República do Líbano, 577", "addressLocality": "São Paulo", "addressRegion": "SP", "postalCode": "04501-000", "addressCountry": "BR"}, "geo": {"@type": "GeoCoordinates", "latitude": -23.5858036, "longitude": -46.6634868}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "17:00"}], "contactPoint": [{"@type": "ContactPoint", "telephone": "+55-11-98161-4443", "contactType": "agendamento"}, {"@type": "ContactPoint", "telephone": "+55-11-3168-0609", "contactType": "atendimento"}], "sameAs": ["https://instagram.com/jonathan.cardio"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Physician", "name": "Dr. Jonathan Souza", "alternateName": "Dr. Jonathan Batista Souza", "url": "https://jonathancardio.com.br/", "image": "https://jonathancardio.com.br/about.jpg", "medicalSpecialty": "Cardiovascular", "telephone": "+55-11-98161-4443", "address": {"@type": "PostalAddress", "streetAddress": "Av. República do Líbano, 577 - Jardim Paulista", "addressLocality": "São Paulo", "addressRegion": "SP", "postalCode": "04501-000", "addressCountry": "BR"}, "geo": {"@type": "GeoCoordinates", "latitude": -23.5858036, "longitude": -46.6634868}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "17:00"}], "contactPoint": [{"@type": "ContactPoint", "telephone": "+55-11-98161-4443", "contactType": "agendamento"}, {"@type": "ContactPoint", "telephone": "+55-11-3168-0609", "contactType": "atendimento"}], "sameAs": ["https://instagram.com/jonathan.cardio"], "availableService": [{"@type": "MedicalTest", "name": "Eletrocardiograma (ECG)"}, {"@type": "MedicalTest", "name": "Ecocardiograma (ECO)"}, {"@type": "MedicalTest", "name": "Doppler de Carótidas (Ecodoppler)"}, {"@type": "MedicalTest", "name": "MAPA — Monitorização Ambulatorial da Pressão Arterial (24 horas)"}, {"@type": "MedicalTest", "name": "MRPA — Monitorização Residencial da Pressão Arterial (5 dias)"}, {"@type": "MedicalTest", "name": "Polissonografia Tipo 3"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Preciso de encaminhamento para marcar consulta?", "acceptedAnswer": {"@type": "Answer", "text": "Não. Você pode agendar pelo telefone (11) 3168-0609 ou diretamente pelo WhatsApp (11) 98161-4443."}}, {"@type": "Question", "name": "O plano de saúde cobre os exames?", "acceptedAnswer": {"@type": "Answer", "text": "A cobertura varia conforme o convênio e o plano. Entre em contato para verificarmos sua autorização."}}, {"@type": "Question", "name": "Hipertensão tem cura?", "acceptedAnswer": {"@type": "Answer", "text": "A hipertensão não tem cura na maior parte dos casos, mas tem controle excelente com o tratamento certo. O objetivo é manter sua pressão sob controle para você viver mais e melhor."}}, {"@type": "Question", "name": "Existem doenças que podem causar a hipertensão ou dificultar seu controle?", "acceptedAnswer": {"@type": "Answer", "text": "Sim, e é por isso que a hipertensão exige visão integral. Problemas de tireoide, doenças das glândulas suprarrenais, alterações nos vasos renais e obesidade podem causar pressão alta ou resistir ao tratamento. Identificar e tratar essas condições é o que diferencia um controle eficaz de um simples \"tomar remédio\"."}}, {"@type": "Question", "name": "O ecocardiograma dói?", "acceptedAnswer": {"@type": "Answer", "text": "Não. É um exame indolor, sem agulhas nem radiação. Usamos ultrassom para ver o coração em tempo real — como uma \"filmagem\" do seu coração."}}, {"@type": "Question", "name": "Qual é a diferença entre MAPA e MRPA?", "acceptedAnswer": {"@type": "Answer", "text": "O MAPA registra a pressão automaticamente durante 24 horas com um aparelho na cintura. A MRPA é feita por você em casa, durante 5 dias, em horários programados. Ambas servem para um diagnóstico mais real da sua pressão arterial."}}, {"@type": "Question", "name": "Onde fica o consultório?", "acceptedAnswer": {"@type": "Answer", "text": "Av. República do Líbano, 577 — Jardim Paulista, São Paulo - SP, 04501-000."}}]}</script>
 </head>
 <body>
 
@@ -258,7 +276,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-photo-wrap">
-      <img class="hero-bg" src="hero-site.jpg" alt="Dr. Jonathan Souza, cardiologista">
+      <img class="hero-bg" src="hero-site.webp" width="1320" height="1400" fetchpriority="high" alt="Dr. Jonathan Souza, cardiologista">
       <div class="hero-photo-fade"></div>
     </div>
     <div class="hero-content wrap">
@@ -283,7 +301,7 @@
   <section class="about" id="sobre">
     <div class="wrap about-grid">
       <div class="about-media">
-        <img class="soft-fade" src="about.jpg" alt="Dr. Jonathan Souza">
+        <img class="soft-fade" src="about.webp" width="1000" height="1532" loading="lazy" decoding="async" alt="Dr. Jonathan Souza">
         <ul class="credential-list">
           <li>PhD em Ciências Médicas — USP</li>
           <li>Médico do Instituto Dante Pazzanese de Cardiologia</li>
@@ -316,7 +334,7 @@
       </div>
       <div class="exams-grid">
         <div class="exams-media">
-          <img class="soft-fade" src="exames.jpg" alt="Dr. Jonathan Souza realizando ecocardiograma">
+          <img class="soft-fade" src="exames.webp" width="1100" height="1650" loading="lazy" decoding="async" alt="Dr. Jonathan Souza realizando ecocardiograma">
           <div class="exams-cta">
             <p>Precisa de algum desses exames?<br><a href="tel:+551131680609">Agende pelo telefone (11) 3168-0609</a></p>
           </div>
@@ -496,7 +514,7 @@
       <div class="faq-list">
         <details open>
           <summary>Preciso de encaminhamento para marcar consulta?</summary>
-          <p>Não. Você pode agendar pelo telefone (11) 3168-0609 ou diretamente pelo WhatsApp (11) 98227-1577.</p>
+          <p>Não. Você pode agendar pelo telefone (11) 3168-0609 ou diretamente pelo WhatsApp (11) 98161-4443.</p>
         </details>
         <details>
           <summary>O plano de saúde cobre os exames?</summary>
@@ -542,9 +560,9 @@
   <!-- CLINIC GALLERY (moved to the end) -->
   <section class="clinic" style="padding:32px 0;">
     <div class="clinic-grid">
-      <img src="fachada.jpg" alt="Fachada do consultório">
-      <img src="interno1.jpg" alt="Recepção do consultório">
-      <img src="interno2.jpg" alt="Ambiente interno do consultório">
+      <img src="fachada.webp" width="1000" height="666" loading="lazy" decoding="async" alt="Fachada do consultório">
+      <img src="interno1.webp" width="1000" height="666" loading="lazy" decoding="async" alt="Recepção do consultório">
+      <img src="interno2.webp" width="1000" height="562" loading="lazy" decoding="async" alt="Ambiente interno do consultório">
     </div>
     <p class="clinic-caption">Consultório na Av. República do Líbano, 577 — Jardim Paulista, São Paulo.</p>
   </section>
@@ -555,7 +573,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <img src="logo-site.png" alt="Dr. Jonathan Souza — Cardiologista | Ecocardiografista">
+        <img src="logo-site.png" alt="Dr. Jonathan Souza — Cardiologista | Ecocardiografista" loading="lazy" decoding="async">
         <p style="max-width:32ch; font-size:.92rem;">Cardiologia e ecocardiografia com base científica, foco em prevenção e acompanhamento contínuo.</p>
       </div>
       <div>
@@ -599,7 +617,7 @@
   .cookie-banner p{margin:0; flex:1 1 320px; color:rgba(255,255,255,.9);}
   .cookie-banner a{color:#fff; text-decoration:underline;}
   .cookie-banner .cookie-actions{display:flex; gap:10px; flex-shrink:0;}
-  .cookie-banner button{cursor:pointer; font-family:inherit;}
+  .cookie-banner button{cursor:pointer; font-family:inherit; min-height:44px;}
 </style>
 <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Aviso de cookies" hidden>
   <p>Usamos cookies para entender como o site é usado e melhorar o conteúdo. Você pode aceitar ou recusar. Saiba mais na <a href="/privacidade/">Política de Privacidade</a>.</p>
