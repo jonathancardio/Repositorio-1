@@ -297,7 +297,7 @@
       <img src="/logo-site.png" alt="Dr. Jonathan Souza — Cardiologista | Ecocardiografista — CRM-SP 141563">
     </a>
     <div class="nav-cta">
-      <a href="https://wa.me/5511981614443?text=Ol%C3%A1%2C%20vim%20pelo%20blog%20Medida%20Certa%20do%20Dr.%20Jonathan%2C%20cardiologista.%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener" class="btn btn-gold">Agende sua consulta</a>
+      <a href="https://wa.me/551131680609?text=Ol%C3%A1%2C%20vim%20pelo%20blog%20Medida%20Certa%20do%20Dr.%20Jonathan%2C%20cardiologista.%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener" class="btn btn-gold">Agende sua consulta</a>
       <a href="https://wa.me/5511982271577?text=Ol%C3%A1%2C%20vim%20pelo%20blog%20Medida%20Certa%20do%20Dr.%20Jonathan%2C%20cardiologista.%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20o%20atendimento." target="_blank" rel="noopener" class="btn btn-concierge">Dúvidas</a>
     </div>
   </div>
@@ -359,8 +359,8 @@
       <div>
         <h2 class="footer-title">Contato</h2>
         <ul>
+          <li>📞 <a href="tel:+551131680609">(11) 3168-0609</a> · <a href="https://wa.me/551131680609?text=Ol%C3%A1%2C%20vim%20pelo%20blog%20Medida%20Certa%20do%20Dr.%20Jonathan%2C%20cardiologista.%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">WhatsApp</a></li>
           <li>💬 <a href="https://wa.me/5511981614443?text=Ol%C3%A1%2C%20vim%20pelo%20blog%20Medida%20Certa%20do%20Dr.%20Jonathan%2C%20cardiologista.%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">(11) 98161-4443 (WhatsApp)</a></li>
-          <li>📞 <a href="tel:+551131680609">(11) 3168-0609</a></li>
           <li>💬 <a href="https://wa.me/5511982271577?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta" target="_blank" rel="noopener">(11) 98227-1577 (WhatsApp)</a></li>
           <li>📍 Av. República do Líbano, 577 — Jardim Paulista, São Paulo - SP, 04501-000</li>
           <li>🕐 Segunda a sexta, das 9h às 17h. Fechado aos sábados e domingos.</li>
@@ -372,7 +372,7 @@
         <ul>
           <li><a href="/#sobre">Sobre o Dr. Jonathan Souza</a></li>
           <li><a href="/#exames">Exames e procedimentos</a></li>
-          <li><a href="https://wa.me/5511981614443?text=Ol%C3%A1%2C%20vim%20pelo%20blog%20Medida%20Certa%20do%20Dr.%20Jonathan%2C%20cardiologista.%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">Agende sua consulta</a></li>
+          <li><a href="https://wa.me/551131680609?text=Ol%C3%A1%2C%20vim%20pelo%20blog%20Medida%20Certa%20do%20Dr.%20Jonathan%2C%20cardiologista.%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">Agende sua consulta</a></li>
           <li><a href="/#faq">Perguntas frequentes</a></li>
           <li><a href="/blog/">Blog Medida Certa</a></li>
         </ul>
@@ -429,7 +429,7 @@
   document.addEventListener('click',function(e){
     var a=e.target.closest ? e.target.closest('a[href*="wa.me/"]') : null;
     if(!a || !carregado) return;
-    var botao=a.href.indexOf('5511981614443')>-1 ? 'agendar' : (a.href.indexOf('5511982271577')>-1 ? 'duvidas' : 'outro');
+    var botao=(a.href.indexOf('551131680609')>-1 || a.href.indexOf('5511981614443')>-1) ? 'agendar' : (a.href.indexOf('5511982271577')>-1 ? 'duvidas' : 'outro');
     var texto=(a.textContent||'').trim().slice(0,60);
     gtag('event','clique_whatsapp',{botao:botao, texto_botao:texto, pagina:location.pathname, transport_type:'beacon'});
     if(botao==='agendar') gtag('event','generate_lead',{metodo:'whatsapp_agendar', pagina:location.pathname, transport_type:'beacon'});
